@@ -29,6 +29,12 @@ def topn_domains(num):
     for item in firstn_list:
         print ("Rank #" + str(item[0]) + "\t\t" + item[1])
 
+def query_domains(domain):
+    print ("In query_domain()")
+
+def outfile_domains(filename, num):
+    print ("In outfile()")
+
 cli_argparser = argparse.ArgumentParser(description='')
 cli_argparser.add_argument('-n', '--number', type=int, help="Displays the top 'n' Alexa rankings.", required=False)
 cli_argparser.add_argument('-q', '--query', help="Checks a website's current ranking.", required=False)
@@ -36,12 +42,10 @@ cli_argparser.add_argument('-o', '--outfile', help="Saves the output to an exter
 cli_args = cli_argparser.parse_args()
 
 if (cli_args.number):
-    print (cli_args.number)
     topn_domains(cli_args.number)
 elif (cli_args.query):
-    print (cli_args.query)
+    query_domains(cli_args.query)
 elif (cli_args.outfile):
-    print (cli_args.outfile)
+    outfile_domains(cli_args.outfile)
 else:
-    print ("Else default")
     topn_domains(50)
