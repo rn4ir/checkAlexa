@@ -6,7 +6,7 @@ import zipfile
 import csv
 
 rankings = {}
-"""
+
 url = 'http://s3.amazonaws.com/alexa-static/top-1m.csv.zip'
 alexa_zipfile = 'top-1m.csv.zip'
 alexa_csvfile = 'top-1m.csv'
@@ -20,7 +20,7 @@ csv_reader = csv.reader(open(alexa_csvfile, 'r'))
 for row in csv_reader:
     key, value = row
     rankings[key] = value
-"""
+
 cli_argparser = argparse.ArgumentParser(description='')
 cli_argparser.add_argument('-n', '--number', type=int, help="Displays the top 'n' Alexa rankings.", required=False)
 cli_argparser.add_argument('-q', '--query', help="Checks a website's current ranking.", required=False)
