@@ -1,6 +1,6 @@
-#### checkAlexa - a Python script to check the top Alexa rankings for websites.
+### checkAlexa - a Python script to check the top Alexa rankings for websites.
 
-##### Purpose
+#### Purpose
 
 The purpose of this script is to download the first million ranked websites, [ranked as per Alexa](https://www.alexa.com/topsites).
 It then, by default, lists the first 50 websites, sorted by rank. It can also accept various arguments for various tasks like:
@@ -10,7 +10,7 @@ It then, by default, lists the first 50 websites, sorted by rank. It can also ac
 - Query a domain's current rank.
 - Force download the rankings at any given time.
 
-```python
+```
 $ python checkAlexa.py --help
 usage: checkAlexa.py [-h] [-n NUMBER] [-q QUERY] [-o OUTFILE] [-d [DOWNLOAD]]
 
@@ -26,10 +26,10 @@ optional arguments:
                         Download the latest Alexa rankings.
 ```
 
-##### Usage
+#### Usage
 
 - Default (first 50 websites)
-```python
+```
 $ python checkAlexa.py
 Rank #1         google.com
 Rank #2         youtube.com
@@ -42,7 +42,7 @@ Rank #50                apple.com
 ```
 
 - First 'n' rankings
-```python
+```
 $ python checkAlexa.py -n 5
 Rank #1         google.com
 Rank #2         youtube.com
@@ -52,7 +52,7 @@ Rank #5         wikipedia.org
 ```
 
 - Query a domain's rank
-```python
+```
 $ python checkAlexa.py -q github.com
 Rank #61        github.com
 
@@ -60,7 +60,18 @@ $ python checkAlexa.py -q netflix.com
 Rank #33        netflix.com
 
 $ python checkAlexa.py -q muchbits.com
-Domain muchbits.com not found in the first million Alexa rankings.
+Domain 'muchbits.com' not found in the first million Alexa rankings.
 ```
 
+- Save output to a file
+```
+$ python checkAlexa.py -o outfile.txt -n 1000000
 
+Query(1000000 domains) saved to 'outfile.txt'
+
+#When '-n' is not specified
+$ python checkAlexa.py -o outfile.txt
+
+Query(50 domains) saved to 'outfile.txt'
+
+```
