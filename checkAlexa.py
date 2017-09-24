@@ -30,7 +30,18 @@ def topn_domains(num):
         print ("Rank #" + str(item[0]) + "\t\t" + item[1])
 
 def query_domains(domain):
-    print ("In query_domain()")
+    if (domain.count('.') > 1) or (domain.count('.') < 1):
+        error = "Invalid Domain-Name. Please enter a valid domain name, of the form 'domainname.tld'"
+        print (error)
+    else:
+        flag = 0
+        for rank, domain_name in rankings.items():
+            if domain_name == domain:
+                print (rank, domain_name)
+            else:
+                flag = 1
+        if flag == 1:
+            print ("Domain " + domain + " not found in the first million Alexa rankings.")
 
 def outfile_domains(filename, num):
     fileobj = open(filename, 'w')
