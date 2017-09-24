@@ -1,12 +1,66 @@
 #### checkAlexa - a Python script to check the top Alexa rankings for websites.
 
-##### Working (***wip***)
+##### Purpose
 
-- Downloads the top 1 million rankings
+The purpose of this script is to download the first million ranked websites, [ranked as per Alexa](https://www.alexa.com/topsites).
+It then, by default, lists the first 50 websites, sorted by rank. It can also accept various arguments for various tasks like:
 
-***Todo:*** 
+- Display the first 'n' websites, sorted by rank.
+- Save the first 'n' websites, sorted by rank, to an output file.
+- Query a domain's current rank.
+- Force download the rankings at any given time.
 
-- Add arguments to:
-    - list out first 50, first 100, first 500 sites
-    - output the results to an output file
-    - query a website
+```python
+$ python checkAlexa.py --help
+usage: checkAlexa.py [-h] [-n NUMBER] [-q QUERY] [-o OUTFILE] [-d [DOWNLOAD]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -n NUMBER, --number NUMBER
+                        Displays the top 'n' Alexa rankings.
+  -q QUERY, --query QUERY
+                        Checks a website's current ranking.
+  -o OUTFILE, --outfile OUTFILE
+                        Saves the output to an external file.
+  -d [DOWNLOAD], --download [DOWNLOAD]
+                        Download the latest Alexa rankings.
+```
+
+##### Usage
+
+- Default (first 50 websites)
+```python
+$ python checkAlexa.py
+Rank #1         google.com
+Rank #2         youtube.com
+Rank #3         facebook.com
+.
+.
+.
+Rank #49                ok.ru
+Rank #50                apple.com
+```
+
+- First 'n' rankings
+```python
+$ python checkAlexa.py -n 5
+Rank #1         google.com
+Rank #2         youtube.com
+Rank #3         facebook.com
+Rank #4         baidu.com
+Rank #5         wikipedia.org
+```
+
+- Query a domain's rank
+```python
+$ python checkAlexa.py -q github.com
+Rank #61        github.com
+
+$ python checkAlexa.py -q netflix.com
+Rank #33        netflix.com
+
+$ python checkAlexa.py -q muchbits.com
+Domain muchbits.com not found in the first million Alexa rankings.
+```
+
+
