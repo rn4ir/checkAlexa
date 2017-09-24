@@ -33,7 +33,11 @@ def query_domains(domain):
     print ("In query_domain()")
 
 def outfile_domains(filename, num):
-    print ("In outfile()")
+    fileobj = open(filename, 'w')
+    firstn_list = list(islice(rankings.items(), num))
+    for item in firstn_list:
+        fileobj.write ("Rank #" + str(item[0]) + "\t\t" + item[1] + "\n")
+    fileobj.close()
 
 cli_argparser = argparse.ArgumentParser(description='')
 cli_argparser.add_argument('-n', '--number', type=int, help="Displays the top 'n' Alexa rankings.", required=False)
