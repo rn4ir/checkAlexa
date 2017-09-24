@@ -64,12 +64,14 @@ Domain 'muchbits.com' not found in the first million Alexa rankings.
 ```
 
 - Save output to a file
+  - when `-n` (number of websites/domains) is specified
 ```
 $ python checkAlexa.py -o outfile.txt -n 1000000
 
 Query(1000000 domains) saved to 'outfile.txt'
-
-#When '-n' is not specified
+```
+  - when `-n` (number of websites/domains) is specified
+```
 $ python checkAlexa.py -o outfile.txt
 
 Query(50 domains) saved to 'outfile.txt'
