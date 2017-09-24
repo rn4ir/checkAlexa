@@ -60,7 +60,7 @@ def query_domains(domain):
                 check_flag = 1
                 break
         if check_flag == 0:
-            print ("Domain " + domain + " not found in the first million Alexa rankings.")
+            print ("Domain '" + domain + "' not found in the first million Alexa rankings.")
 
 def outfile_domains(filename, num):
     rankfile = Path(alexa_csvfile)
@@ -78,6 +78,7 @@ def outfile_domains(filename, num):
     for item in firstn_list:
         fileobj.write ("Rank #" + str(item[0]) + "\t\t" + item[1] + "\n")
     fileobj.close()
+    print ("\nQuery(" + str(num) + " domains) saved to '" + filename + "'\n")
 
 def main():
     cli_argparser = argparse.ArgumentParser(description='')
@@ -97,6 +98,7 @@ def main():
         query_domains(cli_args.query)
     elif (cli_args.download):
         download_rankings()
+        print ("Download complete. Exiting.. \n")
     else:
         topn_domains(50)
 
