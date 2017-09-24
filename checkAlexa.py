@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 import urllib.request
 import argparse
 import zipfile
@@ -34,13 +35,13 @@ def query_domains(domain):
         error = "Invalid Domain-Name. Please enter a valid domain name, of the form 'domainname.tld'"
         print (error)
     else:
-        flag = 0
+        check_flag = 0
         for rank, domain_name in rankings.items():
             if domain_name == domain:
                 print (rank, domain_name)
-            else:
-                flag = 1
-        if flag == 1:
+                check_flag = 1
+                break
+        if check_flag == 0:
             print ("Domain " + domain + " not found in the first million Alexa rankings.")
 
 def outfile_domains(filename, num):
@@ -50,19 +51,23 @@ def outfile_domains(filename, num):
         fileobj.write ("Rank #" + str(item[0]) + "\t\t" + item[1] + "\n")
     fileobj.close()
 
-cli_argparser = argparse.ArgumentParser(description='')
-cli_argparser.add_argument('-n', '--number', type=int, help="Displays the top 'n' Alexa rankings.", required=False)
-cli_argparser.add_argument('-q', '--query', help="Checks a website's current ranking.", required=False)
-cli_argparser.add_argument('-o', '--outfile', help="Saves the output to an external file.", required=False)
-cli_args = cli_argparser.parse_args()
+def main():
+    cli_argparser = argparse.ArgumentParser(description='')
+    cli_argparser.add_argument('-n', '--number', type=int, help="Displays the top 'n' Alexa rankings.", required=False)
+    cli_argparser.add_argument('-q', '--query', help="Checks a website's current ranking.", required=False)
+    cli_argparser.add_argument('-o', '--outfile', help="Saves the output to an external file.", required=False)
+    cli_args = cli_argparser.parse_args()
 
-if (cli_args.number and cli_args.outfile):
-    outfile_domains(cli_args.outfile, cli_args.number)
-elif (cli_args.outfile):
-    outfile_domains(cli_args.outfile, 50)
-elif (cli_args.number):
-    topn_domains(cli_args.number)
-elif (cli_args.query):
-    query_domains(cli_args.query)
-else:
-    topn_domains(50)
+    if (cli_args.number and cli_args.outfile):
+        outfile_domains(cli_args.outfile, cli_args.number)
+    elif (cli_args.outfile):
+        outfile_domains(cli_args.outfile, 50)
+    elif (cli_args.number):
+        topn_domains(cli_args.number)
+    elif (cli_args.query):
+        query_domains(cli_args.query)
+    else:
+        topn_domains(50)
+
+if __name__ == '__main__':
+    sys.exit(main())
