@@ -3,7 +3,7 @@
 #### Purpose
 
 The purpose of this script is to download the first million ranked websites, [ranked as per Alexa](https://www.alexa.com/topsites).
-It then, by default, lists the first 50 websites, sorted by rank. It can also accept various arguments for various tasks like:
+It then, by default, lists the first 50 websites, sorted by rank. The script can also accept various arguments for various tasks like:
 
 - Display the first 'n' websites, sorted by rank.
 - Save the first 'n' websites, sorted by rank, to an output file.
