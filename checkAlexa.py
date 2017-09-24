@@ -56,7 +56,7 @@ def query_domains(domain):
         check_flag = 0
         for rank, domain_name in rankings.items():
             if domain_name == domain:
-                print (rank, domain_name)
+                print ("Rank #" + rank + "\t" + domain_name)
                 check_flag = 1
                 break
         if check_flag == 0:
