@@ -34,6 +34,10 @@ def topn_domains(num):
 
     rankings_dict()
 
+    if num > 1000000:
+        print ("\nQuery out-of-range. Currently displays websites from Rank #1 to Rank #1,000,000.\nExiting..\n")
+        sys.exit()
+
     firstn_list = list(islice(rankings.items(), num))
     for item in firstn_list:
         print ("Rank #" + str(item[0]) + "\t\t" + item[1])
@@ -64,6 +68,10 @@ def outfile_domains(filename, num):
         download_rankings()
 
     rankings_dict()
+
+    if num > 1000000:
+        print ("\nQuery out-of-range. Currently displays websites from Rank #1 to Rank #1,000,000.\nExiting..\n")
+        sys.exit()
 
     fileobj = open(filename, 'w')
     firstn_list = list(islice(rankings.items(), num))
