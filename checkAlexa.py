@@ -41,11 +41,13 @@ cli_argparser.add_argument('-q', '--query', help="Checks a website's current ran
 cli_argparser.add_argument('-o', '--outfile', help="Saves the output to an external file.", required=False)
 cli_args = cli_argparser.parse_args()
 
-if (cli_args.number):
+if (cli_args.number and cli_args.outfile):
+    outfile_domains(cli_args.outfile, cli_args.number)
+elif (cli_args.outfile):
+    outfile_domains(cli_args.outfile, 50)
+elif (cli_args.number):
     topn_domains(cli_args.number)
 elif (cli_args.query):
     query_domains(cli_args.query)
-elif (cli_args.outfile):
-    outfile_domains(cli_args.outfile)
 else:
     topn_domains(50)
