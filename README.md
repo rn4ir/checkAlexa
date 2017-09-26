@@ -1,5 +1,9 @@
 ### checkAlexa - a Python script to check the top Alexa rankings for websites.
 
+#### Requirements
+
+- Python 3.x
+
 #### Purpose
 
 The purpose of this script is to download the first million ranked websites, [ranked as per Alexa](https://www.alexa.com/topsites).
