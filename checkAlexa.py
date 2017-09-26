@@ -1,5 +1,10 @@
 #!/usr/bin/env python
+"""
+A python script to check Alexa rankings of websites.
 
+Requirements:
+
+"""
 import sys
 import urllib.request
 import argparse
@@ -15,6 +20,11 @@ alexa_zipfile = 'top-1m.csv.zip'
 alexa_csvfile = 'top-1m.csv'
 
 def download_rankings():
+    """
+    Function to download the first million ranks.
+    Downloads a zipped csv file.
+    """
+    
     print ("\nDownloading latest Alexa rankings. Please wait..\n")
     urllib.request.urlretrieve(url, alexa_zipfile)
 
@@ -22,12 +32,22 @@ def download_rankings():
         alexazip.extractall()
 
 def rankings_dict():
+    """
+    Imports the csv file into an empty dictionary.
+    Key: Ranks
+    Value: Domain Names
+    """
+    
     csv_reader = csv.reader(open(alexa_csvfile, 'r'))
     for row in csv_reader:
         key, value = row
         rankings[key] = value
 
 def topn_domains(num):
+    """
+    Displays the first 'n' ranks
+    """
+
     rankfile = Path(alexa_csvfile)
     if not rankfile.is_file():
         download_rankings()
@@ -43,6 +63,10 @@ def topn_domains(num):
         print ("Rank #" + str(item[0]) + "\t\t" + item[1])
 
 def query_domains(domain):
+    """
+    Queries a domain and displays it's Alexa rank.
+    """
+
     rankfile = Path(alexa_csvfile)
     if not rankfile.is_file():
         download_rankings()
@@ -63,6 +87,10 @@ def query_domains(domain):
             print ("Domain '" + domain + "' not found in the first million Alexa rankings.")
 
 def outfile_domains(filename, num):
+    """
+    Saves the output to an output file.
+    """
+
     rankfile = Path(alexa_csvfile)
     if not rankfile.is_file():
         download_rankings()
@@ -81,6 +109,11 @@ def outfile_domains(filename, num):
     print ("\nQuery(" + str(num) + " domains) saved to '" + filename + "'\n")
 
 def main():
+    """
+    Main function.
+    Checks command-line arguments and calls the relevant function.
+    """
+
     cli_argparser = argparse.ArgumentParser(description='')
     cli_argparser.add_argument('-n', '--number', type=int, help="Displays the top 'n' Alexa rankings.", required=False)
     cli_argparser.add_argument('-q', '--query', help="Checks a website's current ranking.", required=False)
