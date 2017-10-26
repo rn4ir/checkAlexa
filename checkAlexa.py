@@ -3,7 +3,7 @@
 A python script to check Alexa rankings of websites.
 
 Requirements:
-
+- Python 3.x
 """
 import sys
 import urllib.request
